@@ -23,7 +23,13 @@
   			var myLat = position.coords.latitude;
   			var myLong = position.coords.longitude;
 
-  			//alert(myLat);
+  			  var coordinatesObject = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+        localStorage.setItem('coordinates', JSON.stringify(coordinatesObject));
+
+        console.log(localStorage)
 
   			var coords = new google.maps.LatLng(myLat,myLong);
 
