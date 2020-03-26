@@ -1,4 +1,4 @@
-<<html>
+<html>
 <head>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABunubjYhh4pFYNK-Y98Y5gCSAwNbkcWg"
   type="text/javascript"></script>
@@ -45,8 +45,14 @@
   			}
 
   			var map = new google.maps.Map(document.getElementById("map"), option);
-  			var marker = new google.maps.Marker({map:map, position:coords});
-  		}
+  			var marker = new google.maps.Marker({map:map, position:coords,
+          icon:{
+            path:google.maps.SymbolPath.CIRCLE,
+            scale:15,
+            fillColor:"#F00",
+            fillOpacity:0.8,
+            strokeWeight:1}});
+      }
 
   		function failure(){ }
       id = navigator.geolocation.watchPosition(success, failure, option);
