@@ -5,8 +5,8 @@
   <style type="text/css">
 
   	#map {
-  			width: 80%;
-  			height: 80%;
+  			width: 90%;
+  			height: 50%;
         margin:auto;
   	 }
   </style>
@@ -15,15 +15,14 @@
 
   		x = navigator.geolocation;
 
-  		x.getCurrentPosition(success, failure);
-      var id, option;
-  		function success(position)
 
-  		{
+  		x.getCurrentPosition(success, failure);
+
+      var id, option;
+  		function success(position){
   			var myLat = position.coords.latitude;
   			var myLong = position.coords.longitude;
-
-  			  var coordinatesObject = {
+        var coordinatesObject = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
@@ -34,7 +33,7 @@
   			var coords = new google.maps.LatLng(myLat,myLong);
 
   		option = {
-
+          gestureHandling: 'none',
   				zoom:18,
   				center: coords,
   				mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -44,7 +43,7 @@
   			}
 
   			var map = new google.maps.Map(document.getElementById("map"), option);
-  			var marker = new google.maps.Marker({map:map, position:coords, animation: google.maps.Animation.DROP});
+  			var marker = new google.maps.Marker({map:map, position:coords});
   		}
 
   		function failure(){ }
