@@ -1,0 +1,64 @@
+<html>
+<head>
+  <link href="template.css"  rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABunubjYhh4pFYNK-Y98Y5gCSAwNbkcWg"
+  type="text/javascript"></script>
+  <script type="text/javascript">
+
+  		x = navigator.geolocation;
+
+
+  		x.getCurrentPosition(success, failure);
+
+      var id, option;
+  		function success(position){
+  			var myLat = position.coords.latitude;
+  			var myLong = position.coords.longitude;
+        var coordinatesObject = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+        localStorage.setItem('coordinates', JSON.stringify(coordinatesObject));
+
+        console.log(localStorage)
+
+  			var coords = new google.maps.LatLng(myLat,myLong);
+
+  		option = {
+          gestureHandling: 'none',
+  				zoom:18,
+  				center: coords,
+  				mapTypeId: google.maps.MapTypeId.ROADMAP,
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0
+  			}
+
+  			var map = new google.maps.Map(document.getElementById("map"), option);
+  			var marker = new google.maps.Marker({map:map, position:coords,
+          icon:{
+            path:google.maps.SymbolPath.CIRCLE,
+            scale:10,
+            fillColor:"#F00",
+            fillOpacity:0.8,
+            strokeWeight:1}});
+      }
+
+  		function failure(){ }
+      id = navigator.geolocation.watchPosition(success, failure, option);
+  </script>
+  <title>
+    Online Vehicle Tracking system
+  </title>
+</head>
+
+<body>
+  <h1>ONLINE VEHICLE TRACKING</h1>
+		<div id="map"></div>
+    <div id="back"><input type="button"  value="Back" onclick="window.location.href = 'index.html'"></div>
+
+
+</body>
+</html>
